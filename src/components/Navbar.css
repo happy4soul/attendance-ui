@@ -1,0 +1,13 @@
+.navbar{
+    display : flex;
+    
+}
+
+.unordered-list{
+    
+    margin-right: 10%;
+}
+
+.navbar-brand{
+    margin-left: 5%;
+}
