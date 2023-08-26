@@ -9,13 +9,14 @@ const Content = ({ name, regno, marked, onCheckboxChange }) => {
   return (
     <div className='row'>
       <div className='col col-lg-4 col-md-4 col-sm-4'>
-        {name}
+        <p className='content-size'>{name}</p>
       </div>
       <div className='col col-lg-4 col-md-4 col-sm-4'>
-        {regno}
+        <p className='content-size'>{regno}</p>
       </div>
       <div className='col col-lg-4 col-md-4 col-sm-4'>
         <input type='checkbox' className='checkbox' checked={marked} onChange={changeHandler} />
+        
       </div>
     </div>
   );

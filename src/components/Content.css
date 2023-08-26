@@ -1,3 +1,10 @@
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 .col{
     margin-top: 2%;
+}
+.content-size{
+    font-size: 1.3rem;
 }

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Content from './components/Content';
 import Navbar from './components/Navbar';
 import './App.css'
+import LoginComponent from "./components/LoginComponent";
 
 const App = () => {
   const initialDetails = [
@@ -86,7 +87,11 @@ const App = () => {
       password: 'Elom@123',
       marked: false
     },
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 4bbb136 (updated functionalities)
   ];
 
   const [details, setDetails] = useState(() => {
@@ -94,66 +99,98 @@ const App = () => {
     return detailsJSON ? JSON.parse(detailsJSON) : initialDetails;
   });
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [loggedInUser, setLoggedInUser] = useState(null)
+
   useEffect(() => {
     localStorage.setItem('details', JSON.stringify(details));
   }, [details]);
 
-  // const handleCheckboxChange = (index) => {
-  //   const updatedDetails = [...details];
-  //   updatedDetails[index].marked = !updatedDetails[index].marked;
-  //   setDetails(updatedDetails);
-  // };
+  
 
-  const handleCheckboxChange = (index) => {
+  const handleCheckboxChange = (index,user) => {
     const updatedDetails = [...details];
     const currentItem = updatedDetails[index];
-  
-    if (!currentItem.marked) {
-      currentItem.marked = true;
+
+    if (user.name === currentItem.name) {
+      currentItem.marked = !currentItem.marked;
       setDetails(updatedDetails);
-      alert(`Your Attendance has been marked successfully`);
+      if(currentItem.marked){
+        alert(`Your Attendance has been marked successfully`);
+      }
+      else{
+        alert('Mark your attendance')
+      }
+      
     } else {
       currentItem.marked = false;
       setDetails(updatedDetails);
+      alert('Nice try, but proxy cannot be applied!')
     }
   };
 
+  const handleLogin = (username, password) => {
+    const student = details.find(
+      (item) => item.userName === username && item.password === password
+    );
+
+    if (student) {
+      setIsLoggedIn(true);
+      alert('Welcome!')
+      setLoggedInUser(student)
+    } else {
+      alert('Invalid username or password');
+    }
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false)
+    setLoggedInUser(null)
+  }
+
   return (
     <div className="main-div">
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
       <div className="searchbar-container">
-         <SearchBar details={details} />
-       </div>
+        {isLoggedIn ? (
+          <SearchBar details={details} />
+        ) : (
+          <LoginComponent handleLogin={handleLogin} />
+        )}
 
-      <center className="content-container">
-        <div>
+      </div>
+      {isLoggedIn && (
+        <center id="My-Attendance" className="content-container">
+          <div>
 
-          <div className="row">
-            <div className="col-lg-4 col-md-4 col-sm-4">
-              <h2>Name</h2>
+            <div className="row">
+              <div className="col-lg-4 col-md-4 col-sm-4">
+                <h2>Name</h2>
+              </div>
+
+              <div className="col-lg-4 col-md-4 col-sm-4">
+                <h2>Regno</h2>
+              </div>
+
+              <div className="col-lg-4 col-md-4 col-sm-4">
+                <h2>Attendance</h2>
+              </div>
+
             </div>
 
-            <div className="col-lg-4 col-md-4 col-sm-4">
-              <h2>Regno</h2>
-            </div>
-
-            <div className="col-lg-4 col-md-4 col-sm-4">
-              <h2>Attendance</h2>
-            </div>
-
+            {details.map((item, index) => (
+              <Content
+                key={index}
+                name={item.name}
+                regno={item.regno}
+                marked={item.marked}
+                onCheckboxChange={() => handleCheckboxChange(index,loggedInUser)}
+              />
+            ))}
           </div>
+        </center>
+      )}
 
-          {details.map((item, index) => (
-            <Content
-              key={index}
-              name={item.name}
-              regno={item.regno}
-              marked={item.marked}
-              onCheckboxChange={() => handleCheckboxChange(index)}
-            />
-          ))}
-        </div>
-      </center>
     </div>
   );
 };

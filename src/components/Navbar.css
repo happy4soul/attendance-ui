@@ -1,13 +1,17 @@
 .navbar{
     display : flex;
     
+    
 }
+
 
 .unordered-list{
     
-    margin-right: 10%;
+    margin-right: 5%;
 }
 
 .navbar-brand{
     margin-left: 5%;
+    
 }
+
