@@ -86,7 +86,7 @@ const App = () => {
       password: 'Elom@123',
       marked: false
     },
-    // ... other details
+    
   ];
 
   const [details, setDetails] = useState(() => {
