@@ -4,6 +4,8 @@ import Content from './components/Content';
 import Navbar from './components/Navbar';
 import './App.css'
 import LoginComponent from "./components/LoginComponent";
+// import SubjectComponent from "./components/SubjectComponent";
+import Card from "./components/Card";
 
 const App = () => {
   const initialDetails = [
@@ -87,11 +89,6 @@ const App = () => {
       password: 'Elom@123',
       marked: false
     },
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> 4bbb136 (updated functionalities)
   ];
 
   const [details, setDetails] = useState(() => {
@@ -101,27 +98,28 @@ const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [loggedInUser, setLoggedInUser] = useState(null)
+  // const [subjects, setSubjects] = useState([])
 
   useEffect(() => {
     localStorage.setItem('details', JSON.stringify(details));
   }, [details]);
 
-  
 
-  const handleCheckboxChange = (index,user) => {
+
+  const handleCheckboxChange = (index, user) => {
     const updatedDetails = [...details];
     const currentItem = updatedDetails[index];
 
     if (user.name === currentItem.name) {
       currentItem.marked = !currentItem.marked;
       setDetails(updatedDetails);
-      if(currentItem.marked){
+      if (currentItem.marked) {
         alert(`Your Attendance has been marked successfully`);
       }
-      else{
+      else {
         alert('Mark your attendance')
       }
-      
+
     } else {
       currentItem.marked = false;
       setDetails(updatedDetails);
@@ -148,9 +146,19 @@ const App = () => {
     setLoggedInUser(null)
   }
 
+  // const handleAddSubject = (subject) => {
+  //   setSubjects([...subjects, subject]);
+  // };
+
+  // const handleDeleteSubject = (index) => {
+  //   const updatedSubjects = subjects.filter((_, i) => i !== index);
+  //   setSubjects(updatedSubjects);
+  // };
+
   return (
-    <div className="main-div">
-      <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
+    <Card className="main-div">
+    <div><Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} /></div>
+      
       <div className="searchbar-container">
         {isLoggedIn ? (
           <SearchBar details={details} />
@@ -159,9 +167,28 @@ const App = () => {
         )}
 
       </div>
+      {/* <SubjectComponent onAddSubject={handleAddSubject} /> */}
+      {/* {isLoggedIn && <SubjectComponent
+        isLoggedIn={isLoggedIn}
+        onAddSubject={handleAddSubject}
+        subjects={subjects}
+        onDeleteSubject={handleDeleteSubject}
+      />} */}
+
+
+      {/*
+      <div className="subjects-list">
+        {subjects.map((subject, index) => (
+          <div key={index} className="subject-item">
+            <p>{subject.subjectName}</p>
+            <p>Present: {subject.presentClasses}</p>
+            <p>Total: {subject.totalClasses}</p>
+          </div>
+        ))}
+      </div> */}
       {isLoggedIn && (
         <center id="My-Attendance" className="content-container">
-          <div>
+          <div className="row-container">
 
             <div className="row">
               <div className="col-lg-4 col-md-4 col-sm-4">
@@ -184,14 +211,14 @@ const App = () => {
                 name={item.name}
                 regno={item.regno}
                 marked={item.marked}
-                onCheckboxChange={() => handleCheckboxChange(index,loggedInUser)}
+                onCheckboxChange={() => handleCheckboxChange(index, loggedInUser)}
               />
             ))}
           </div>
         </center>
       )}
 
-    </div>
+    </Card>
   );
 };
 

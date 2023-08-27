@@ -1,23 +1,23 @@
 import './Navbar.css'
 
+
 let Navbar = ({ isLoggedIn, handleLogout }) => {
     return (
-        <div className='navbar navbar-expand-lg navbar-expand-md navbar-dark bg-dark'>
-            <div className='brand navbar-brand bg-dark '>Attendance UI</div>
-
+        <div className='navbar navbar-expand-lg navbar-expand-md'>
+            <div className='brand navbar-brand'><h2>Attendance UI</h2></div>
+            
             {isLoggedIn && (
+
                 <ul className='unordered-list navbar-nav ml-auto'>
                     <li className="nav-li nav-item active">
-                        <a className="nav-link btn btn-md btn-dark bg-dark" href="#">Home </a>
+                        <a className="nav-link btn btn-md" href="#" style={{ color: 'white' }}>Home </a>
                     </li>
                     <li className="nav-li nav-item active">
-                        <a className="nav-link btn btn-md btn-dark bg-dark" href="#My-Attendance">My-Attendance</a>
+                        <a className="nav-link btn btn-md" href="#My-Attendance" style={{ color: 'white' }}>My-Attendance</a>
                     </li>
+
                     <li className="nav-li nav-item active">
-                        <a className="nav-link btn btn-md btn-dark bg-dark" href="#">My-Marks</a>
-                    </li>
-                    <li className="nav-li nav-item active">
-                        <button className='nav-link btn btn-md btn-dark bg-dark' onClick={handleLogout}>Logout</button>
+                        <button className='button nav-link btn btn-md' onClick={handleLogout} style={{ color: 'white' }}>Logout</button>
                     </li>
                 </ul>
             )}

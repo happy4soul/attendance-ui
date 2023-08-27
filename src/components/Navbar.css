@@ -1,7 +1,7 @@
 .navbar{
     display : flex;
-    
-    
+    margin: 0;
+    color: white;
 }
 
 
@@ -13,5 +13,21 @@
 .navbar-brand{
     margin-left: 5%;
     
+}
+
+
+a:hover{
+    background-color: #5C5470;
+    color: white;
+    
+    border-radius: 5%;
+    
+}
+.btn{
+    border-radius: 5%;
+}
+button:hover{
+    background-color: grey;
+    color: white;
 }
 

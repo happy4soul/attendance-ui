@@ -29,7 +29,7 @@ const LoginComponent = ({ handleLogin }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <button className='button btn btn-lg' type="submit">Login</button>
       </form>
     </div>
   );

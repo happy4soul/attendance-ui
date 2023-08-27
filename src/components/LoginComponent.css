@@ -21,6 +21,12 @@ form{
 .form-input{
     margin-left: 5%;
 }
-button{
+.button{
     margin-left: 2%;
+    color: white;
+    background: transparent
+}
+.button:hover{
+    background-color: #5C5470;
+    color: white;
 }
