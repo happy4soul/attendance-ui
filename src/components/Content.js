@@ -3,7 +3,7 @@ import './Content.css'
 
 const Content = ({ name, regno, marked, onCheckboxChange }) => {
   const changeHandler = () => {
-    onCheckboxChange(); 
+    onCheckboxChange();
   };
 
   return (
@@ -16,7 +16,7 @@ const Content = ({ name, regno, marked, onCheckboxChange }) => {
       </div>
       <div className='col col-lg-4 col-md-4 col-sm-4'>
         <input type='checkbox' className='checkbox' checked={marked} onChange={changeHandler} />
-        
+
       </div>
     </div>
   );

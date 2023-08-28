@@ -121,9 +121,8 @@ const App = () => {
       }
 
     } else {
-      currentItem.marked = false;
-      setDetails(updatedDetails);
-      alert('Nice try, but proxy cannot be applied!')
+
+      alert('you cannot change the attendance of the other user! ')
     }
   };
 
@@ -155,20 +154,40 @@ const App = () => {
   //   setSubjects(updatedSubjects);
   // };
 
-  return (
-    <Card className="main-div">
-    <div><Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} /></div>
-      
-      <div className="searchbar-container">
-        {isLoggedIn ? (
-          <SearchBar details={details} />
-        ) : (
-          <LoginComponent handleLogin={handleLogin} />
-        )}
+  useEffect(() => {
+    const storageEventListener = (e) => {
+      if (e.key === 'details') {
+        const updatedDetails = JSON.parse(e.newValue)
+        setDetails(updatedDetails)
+      }
+    }
 
-      </div>
-      {/* <SubjectComponent onAddSubject={handleAddSubject} /> */}
-      {/* {isLoggedIn && <SubjectComponent
+    window.addEventListener('storage', storageEventListener)
+
+    return () => {
+      window.removeEventListener('storage', storageEventListener)
+    }
+  }, [])
+
+  return (
+    <>
+      <div><Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} /></div>
+
+
+
+      <Card className="main-div">
+
+        <div className="searchbar-container">
+          {isLoggedIn ? (
+            <SearchBar details={details} />
+          ) : (
+            <LoginComponent handleLogin={handleLogin} />
+          )}
+
+        </div>
+
+        {/* <SubjectComponent onAddSubject={handleAddSubject} /> */}
+        {/* {isLoggedIn && <SubjectComponent
         isLoggedIn={isLoggedIn}
         onAddSubject={handleAddSubject}
         subjects={subjects}
@@ -176,7 +195,7 @@ const App = () => {
       />} */}
 
 
-      {/*
+        {/*
       <div className="subjects-list">
         {subjects.map((subject, index) => (
           <div key={index} className="subject-item">
@@ -186,39 +205,41 @@ const App = () => {
           </div>
         ))}
       </div> */}
-      {isLoggedIn && (
-        <center id="My-Attendance" className="content-container">
-          <div className="row-container">
+        {isLoggedIn && (
+          <center id="My-Attendance" className="content-container">
+            <div className="row-container">
 
-            <div className="row">
-              <div className="col-lg-4 col-md-4 col-sm-4">
-                <h2>Name</h2>
+              <div className="row">
+                <div className="col-lg-4 col-md-4 col-sm-4">
+                  <h2>Name</h2>
+                </div>
+
+                <div className="col-lg-4 col-md-4 col-sm-4">
+                  <h2>Regno</h2>
+                </div>
+
+                <div className="col-lg-4 col-md-4 col-sm-4">
+                  <h2>Attendance</h2>
+                </div>
+
               </div>
 
-              <div className="col-lg-4 col-md-4 col-sm-4">
-                <h2>Regno</h2>
-              </div>
-
-              <div className="col-lg-4 col-md-4 col-sm-4">
-                <h2>Attendance</h2>
-              </div>
-
+              {details.map((item, index) => (
+                <Content
+                  key={index}
+                  name={item.name}
+                  regno={item.regno}
+                  marked={item.marked}
+                  onCheckboxChange={() => handleCheckboxChange(index, loggedInUser)}
+                />
+              ))}
             </div>
+          </center>
+        )}
 
-            {details.map((item, index) => (
-              <Content
-                key={index}
-                name={item.name}
-                regno={item.regno}
-                marked={item.marked}
-                onCheckboxChange={() => handleCheckboxChange(index, loggedInUser)}
-              />
-            ))}
-          </div>
-        </center>
-      )}
+      </Card>
 
-    </Card>
+    </>
   );
 };
 

@@ -14,16 +14,16 @@ const LoginComponent = ({ handleLogin }) => {
     <div className='login-container'>
       <h2>Login to Mark Attendance</h2>
       <form onSubmit={handleSubmit}>
-      
+
         <input
-        className='form-input'
+          className='form-input'
           type="text"
           placeholder="your username..."
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
-        className='form-input'
+          className='form-input'
           type="password"
           placeholder="your password..."
           value={password}

@@ -1,8 +1,16 @@
+body {
+    overflow-x: hidden;
+}
+
 .card {
-    border-radius: 12px;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
-    background-color: #393646;
-    margin-top: 0%;
-    /* border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); */
+
+    background-color: #D7C0AE;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    /* margin: 20px; */
+    margin-top: 5%;
+    margin: 30px 20px 20px;
+    color: #4F4557;
+
 }

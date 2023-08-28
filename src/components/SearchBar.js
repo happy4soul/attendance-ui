@@ -16,20 +16,20 @@ const SearchBar = ({ details }) => {
     setFilteredDetails(filteredItems);
   };
 
-  
+
 
   const handleNameClick = (name) => {
     const index = details.findIndex((item) => item.name === name);
-  
+
     if (index !== -1) {
-      
+
       const id = name.toLowerCase().replace(/\s+/g, '-');
-      
-      
+
+
       document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
     }
   };
-  
+
 
   return (
     <div>
@@ -43,17 +43,17 @@ const SearchBar = ({ details }) => {
 
       {(filteredDetails.length > 0 && inputValue !== '') && (
         <div>
-          {filteredDetails.map((item,index) => {
+          {filteredDetails.map((item, index) => {
 
             const id = item.name.toLowerCase().replace(/\s+/g, '-')
             return (
 
-            
-            <p 
-            key={item.id}
-            onClick={() => handleNameClick(item.name)}
-            id = {id}
-            >{item.name}</p>
+
+              <p
+                key={item.id}
+                onClick={() => handleNameClick(item.name)}
+                id={id}
+              >{item.name}</p>
             )
           })}
         </div>
