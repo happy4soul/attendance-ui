@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/attendance-ui/static/css/main.6d72eada.css",
+    "main.js": "/attendance-ui/static/js/main.dee37f9a.js",
+    "index.html": "/attendance-ui/index.html",
+    "main.6d72eada.css.map": "/attendance-ui/static/css/main.6d72eada.css.map",
+    "main.dee37f9a.js.map": "/attendance-ui/static/js/main.dee37f9a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6d72eada.css",
+    "static/js/main.dee37f9a.js"
+  ]
+}
